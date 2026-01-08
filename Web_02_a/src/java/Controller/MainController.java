@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller;
+package Controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Duy
+ * @author AngDeng
  */
 public class MainController extends HttpServlet {
 
@@ -37,11 +37,12 @@ public class MainController extends HttpServlet {
             out.println("<title>Servlet MainController</title>");            
             out.println("</head>");
             out.println("<body>");
-            String txtA = request.getParameter("txtA");
-            String txtB = request.getParameter("txtB");
-            double a = Double.parseDouble(txtA);
-            double b = Double.parseDouble(txtB);
-            out.println(a+ "+" + b+"= <b>"+ (a+b) +"</b>"); 
+            String txtA =request.getParameter("txtA");
+            String txtB =request.getParameter("txtB");
+            double a =Double.parseDouble(txtA);
+            double b =Double.parseDouble(txtB);
+            out.println(a+"+"+b+"=<b>"+(a+b)+"</b>");
+                    
             out.println("</body>");
             out.println("</html>");
         }
