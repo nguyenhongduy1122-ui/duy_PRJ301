@@ -83,7 +83,7 @@ parameters demo!!!
             padding: 30px;
 
             display: flex;
-            flex-direction: column;   /* QUAN TRỌNG */
+            flex-direction: column;   
             align-items: center;
         }
 
