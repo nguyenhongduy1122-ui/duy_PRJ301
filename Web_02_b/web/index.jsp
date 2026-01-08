@@ -1,7 +1,7 @@
 <%-- 
     Document   : index
-    Created on : Jan 8, 2026, 1:23:56 PM
-    Author     : Duy
+    Created on : Jan 8, 2026, 10:39:40 AM
+    Author     : AngDeng
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -12,17 +12,18 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form action="MainController" method="get">
-            a: <input type="text" name="txtA"/> <br/>
-            b: <input type="text" name="txtB"/> <br/>
+ <form action="MainController " method ="get">
+            a:<input type="text" name="txtA"/> <br/>
+            b:<input type="text" name="txtB"/> <br/>
             <select name="txtOp">
-                <option></option>
-                <option value="+">+</option>
-                <option value="-">-</option>
-                <option value="*">*</option>
-                <option value="/">/</option>
+                <option></option> 
+                <option value="+">+</option> 
+                <option value="-">-</option> 
+                <option value="*">*</option> 
+                <option value="/">/</option> 
+                
             </select>
-            <input type="submit" value="Submit"/>
+            <input type="submit" value="Submit">
         </form>
     </body>
 </html>

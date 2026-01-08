@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller;
+package Controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -38,40 +38,38 @@ public class MainController extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             boolean checkError = false;
-            String txtA = request.getParameter("txtA");
-            String txtB = request.getParameter("txtB");
-            String txtOp = request.getParameter("txtOp");
-            double result = 0;
-            double a = 0;
-            double b = 0;
-
+            String txtA =request.getParameter("txtA");
+            String txtB =request.getParameter("txtB");
+            String txtOp =request.getParameter("txtOp");
+            double result=0;
+            double a=0;
+            double b=0;
             try {
-                a = Double.parseDouble(txtA);
-                b = Double.parseDouble(txtB);
-                switch (txtOp) {
-                    case "+":
-                        result = a + b;
-                        break;
-                    case "-":
-                        result = a - b;
-                        break;
-                    case "*":
-                        result = a * b;
-                        break;
-                    case "/":
-                        result = a / b;
-                        break;
-                    default:
-                        result = 0;
-                }
+            a =Double.parseDouble(txtA);
+            b =Double.parseDouble(txtB);
+            switch (txtOp) {
+                case "+":
+                    result = a+b;
+                    break;
+                case "-":
+                    result = a-b;
+                    break;
+                case "*":
+                    result = a*b;
+                    break;
+                case "/":
+                    result = a/b;
+                    break;
+                default:
+                    result=0;
+            }
             } catch (Exception e) {
                 checkError = true;
             }
-            if(!checkError){
-                out.println(a + txtOp + b + "= <b>" + result + "</b>");
-            }
+           if(!checkError)
+            out.println(a+txtOp+b+"=<b>"+result+"</b>");
             else
-                out.println("Xay ra loi trong qua trinh xu ly");
+               out.println("Xay ra loi trong qua trinh xu ly!");
             out.println("</body>");
             out.println("</html>");
         }
