@@ -34,15 +34,15 @@ public class MainController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet MainController</title>");            
+            out.println("<title>Servlet MainController</title>");
             out.println("</head>");
             out.println("<body>");
-            String txtA =request.getParameter("txtA");
-            String txtB =request.getParameter("txtB");
-            double a =Double.parseDouble(txtA);
-            double b =Double.parseDouble(txtB);
-            out.println(a+"+"+b+"=<b>"+(a+b)+"</b>");
-                    
+            String txtA = request.getParameter("txtA");
+            String txtB = request.getParameter("txtB");
+            double a = Double.parseDouble(txtA);
+            double b = Double.parseDouble(txtB);
+            out.println(a + "+" + b + "=<b>" + (a + b) + "</b>");
+
             out.println("</body>");
             out.println("</html>");
         }
