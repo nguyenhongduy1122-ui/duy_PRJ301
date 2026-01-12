@@ -9,25 +9,37 @@ package model;
  * @author Duy
  */
 public class UserDTO {
-    private String username;
+    private String userID;
+    private String fullName;
     private String password;
-    private String fullname;
+    private String roleID;
+    private boolean status;
 
     public UserDTO() {
     }
 
-    public UserDTO(String username, String password, String fullname) {
-        this.username = username;
+    public UserDTO(String userID, String fullName, String password, String roleID, boolean status) {
+        this.userID = userID;
+        this.fullName = fullName;
         this.password = password;
-        this.fullname = fullname;
+        this.roleID = roleID;
+        this.status = status;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserID() {
+        return userID;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getPassword() {
@@ -38,13 +50,20 @@ public class UserDTO {
         this.password = password;
     }
 
-    public String getFullname() {
-        return fullname;
+    public String getRoleID() {
+        return roleID;
     }
 
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
+    public void setRoleID(String roleID) {
+        this.roleID = roleID;
     }
-    
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
     
 }
