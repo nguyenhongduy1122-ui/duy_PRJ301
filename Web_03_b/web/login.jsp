@@ -21,6 +21,6 @@
             String message = request.getAttribute("message")+"";
             message = (message.equals("null"))?"":message;
         %>
-        <span style="color: red"> <%=message%></span>
+        <span style="color:red"> <%=message%></span>
     </body>
 </html>
