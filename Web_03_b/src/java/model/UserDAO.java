@@ -8,26 +8,25 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import javax.xml.transform.Result;
 import utils.DbUtils;
 
 /**
  *
- * @author Duy
+ * @author tungi
  */
 public class UserDAO {
 
     public ArrayList<UserDTO> list = new ArrayList<>();
 
     public UserDAO() {
-
     }
 
-    public UserDTO searchByID(String username) {
+    public UserDTO searchById(String username) {
         try {
             Connection conn = DbUtils.getConnection();
-            String sql = "SELECT * FORM tblUsers "
+            String sql = "SELECT * FROM tblUsers "
                     + " WHERE userID='" + username + "'";
+            System.out.println(sql);
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(sql);
             
@@ -40,15 +39,15 @@ public class UserDAO {
                 boolean status = rs.getBoolean("status");
                 user = new UserDTO(userID, fullName, password, roleID, status);
             }
+            
             return user;
         } catch (Exception e) {
             return null;
         }
-
     }
 
     public UserDTO login(String username, String password) {
-        UserDTO u = searchByID(username);
+        UserDTO u = searchById(username);
         if (u != null && u.getPassword().equals(password)) {
             return u;
         }
