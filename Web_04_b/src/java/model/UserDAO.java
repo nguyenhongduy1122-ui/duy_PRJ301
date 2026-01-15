@@ -5,6 +5,7 @@
 package model;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -25,10 +26,11 @@ public class UserDAO {
         try {
             Connection conn = DbUtils.getConnection();
             String sql = "SELECT * FROM tblUsers "
-                    + " WHERE userID='" + username + "'";
+                    + " WHERE userID=?";
             System.out.println(sql);
-            Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery(sql);
+            PreparedStatement pst = conn.prepareStatement(sql);
+            pst.setString(1, username);
+            ResultSet rs = pst.executeQuery();
             
             UserDTO user = null;
             while (rs.next()) {
@@ -39,8 +41,7 @@ public class UserDAO {
                 boolean status = rs.getBoolean("status");
                 user = new UserDTO(userID, fullName, password, roleID, status);
             }
-            
-            
+            System.out.println(user);
             return user;
         } catch (Exception e) {
             return null;
