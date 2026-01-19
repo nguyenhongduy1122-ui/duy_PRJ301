@@ -35,21 +35,22 @@ public class LoginController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = "";
         HttpSession session = request.getSession();
-        if(session.getAttribute("user")==null){
+        if (session.getAttribute("user") == null) {
             String txtUsername = request.getParameter("txtUsername");
             String txtPassword = request.getParameter("txtPassword");
-            
+
             UserDAO udao = new UserDAO();
             UserDTO user = udao.login(txtUsername, txtPassword);
-            if(user != null){
-                if(user.isStatus()==true){
+            if (user != null) {
+                if (user.isStatus() == true) {
                     url = "a.jsp";
-                session.setAttribute("user", user);
-                }else {
-                    url = "login.jsp";
-                    request.setAttribute("message", "tai khoan bi khoa!");
+                    session.setAttribute("user", user);
+                } else {
+                    url = "403.jsp";
+                    request.setAttribute("message", "tai khoa da vi pham");
+
                 }
-                
+
             } else {
                 url = "login.jsp";
                 request.setAttribute("message", "Invalid username or password");
@@ -57,7 +58,7 @@ public class LoginController extends HttpServlet {
         } else {
             url = "a.jsp";
         }
-        
+
         RequestDispatcher rd = request.getRequestDispatcher(url);
         rd.forward(request, response);
     }
