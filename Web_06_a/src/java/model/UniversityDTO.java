@@ -11,7 +11,7 @@ package model;
 public class UniversityDTO {
     private String id, name, shortName, description;
     private int foundedYear;
-    private String address, city, region, typeString;
+    private String address, city, region, type;
     private int totalStudent, totalFaculties;
     private  boolean isDraft;
 
@@ -27,7 +27,7 @@ public class UniversityDTO {
         this.address = address;
         this.city = city;
         this.region = region;
-        this.typeString = typeString;
+        this.type = type;
         this.totalStudent = totalStudent;
         this.totalFaculties = totalFaculties;
         this.isDraft = isDraft;
@@ -97,12 +97,12 @@ public class UniversityDTO {
         this.region = region;
     }
 
-    public String getTypeString() {
-        return typeString;
+    public String getType() {
+        return type;
     }
 
-    public void setTypeString(String typeString) {
-        this.typeString = typeString;
+    public void setTypeString(String type) {
+        this.type = type;
     }
 
     public int getTotalStudent() {

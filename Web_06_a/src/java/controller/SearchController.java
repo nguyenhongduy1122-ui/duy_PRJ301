@@ -6,20 +6,20 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.UserDAO;
-import model.UserDTO;
+import model.UniversityDAO;
+import model.UniversityDTO;
 
 /**
  *
  * @author Duy
  */
-public class LoginController extends HttpServlet {
+public class SearchController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,33 +32,22 @@ public class LoginController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
-        String url = "";
-        HttpSession session = request.getSession();
-        if (session.getAttribute("user") == null) {
-            String txtUsername = request.getParameter("txtUsername");
-            String txtPassword = request.getParameter("txtPassword");
-
-            UserDAO udao = new UserDAO();
-            UserDTO user = udao.login(txtUsername, txtPassword);
-            if (user != null) {
-                if (user.isStatus() == true) {
-                    url = "welcome.jsp";
-                    session.setAttribute("user", user);
-                } else {
-                    url = "403.jsp";
-                    request.setAttribute("message", "tai khoa da vi pham");
-
-                }
-
-            } else {
-                url = "login.jsp";
-                request.setAttribute("message", "Invalid username or password");
-            }
-        } else {
-            url = "welcome.jsp";
+        
+        String keywords = request.getParameter("keywords");
+        if(keywords == null){
+            keywords = "";
         }
-
+        UniversityDAO udao = new UniversityDAO();
+        ArrayList<UniversityDTO> list = new ArrayList<>();
+        if(keywords.trim().length() > 0){
+            list = udao.filterByName(keywords);
+        }
+        request.setAttribute("list", list);
+        request.setAttribute("keywords", keywords);
+        String url = "search.jsp";
         RequestDispatcher rd = request.getRequestDispatcher(url);
         rd.forward(request, response);
     }

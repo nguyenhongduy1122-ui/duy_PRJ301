@@ -15,20 +15,20 @@ import utils.DbUtils;
  * @author Duy
  */
 public class UniversityDAO {
-    public UniversityDAO(){
-        
+
+    public UniversityDAO() {
+
     }
-    
-    
-    public ArrayList<UniversityDTO> searchByID(String ID){
+
+    public ArrayList<UniversityDTO> searchByColum(String columnString, String value) {
         ArrayList<UniversityDTO> result = new ArrayList<>();
         try {
             Connection conn = DbUtils.getConnection();
             String sql = "SELECT * FROM tblUniversity WHERE id=?";
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, ID);
+            ps.setString(1, value);
             ResultSet rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 String id = rs.getString("id");
                 String name = rs.getString("name");
                 String shortName = rs.getString("shortName");
@@ -41,7 +41,7 @@ public class UniversityDAO {
                 int totalStudents = rs.getInt("totalStudents");
                 int totalFaculties = rs.getInt("totalFaculties");
                 boolean isDraft = rs.getBoolean("isDraft");
-                
+
                 UniversityDTO u = new UniversityDTO(id, name, shortName, description, foundedYear, address, city, region, type, totalStudents, totalFaculties, isDraft);
                 result.add(u);
             }
@@ -49,5 +49,48 @@ public class UniversityDAO {
             return null;
         }
         return result;
+    }
+
+    public ArrayList<UniversityDTO> filterByColum(String column, String value) {
+        ArrayList<UniversityDTO> result = new ArrayList<>();
+        try {
+            Connection conn = DbUtils.getConnection();
+            String sql = "SELECT * FROM tblUniversity WHERE " + column + " LIKE ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, "%" + value + "%");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                String id = rs.getString("id");
+                String name = rs.getString("name");
+                String shortName = rs.getString("shortName");
+                String description = rs.getString("description");
+                int foundedYear = rs.getInt("foundedYear");
+                String address = rs.getString("address");
+                String city = rs.getString("city");
+                String region = rs.getString("region");
+                String type = rs.getString("type");
+                int totalStudents = rs.getInt("totalStudents");
+                int totalFaculties = rs.getInt("totalFaculties");
+                boolean isDraft = rs.getBoolean("isDraft");
+
+                UniversityDTO u = new UniversityDTO(id, name, shortName, description, foundedYear, address, city, region, type, totalStudents, totalFaculties, isDraft);
+                result.add(u);
+            }
+        } catch (Exception e) {
+            return null;
+        }
+        return result;
+    }
+
+    public ArrayList<UniversityDTO> searchByID(String ID) {
+        return searchByColum("id", ID);
+    }
+
+    public ArrayList<UniversityDTO> searchByName(String name) {
+        return searchByColum("name", name);
+    }
+
+    public ArrayList<UniversityDTO> filterByName(String name) {
+        return filterByColum("name", name);
     }
 }
