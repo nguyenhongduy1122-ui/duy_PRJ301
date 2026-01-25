@@ -48,6 +48,7 @@ public class SearchController extends HttpServlet {
         request.setAttribute("list", list);
         request.setAttribute("keywords", keywords);
         String url = "search.jsp";
+        
         RequestDispatcher rd = request.getRequestDispatcher(url);
         rd.forward(request, response);
     }
