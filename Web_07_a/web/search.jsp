@@ -47,22 +47,24 @@
                     </thead>
 
                     <c:forEach items="${list}" var="u">
-                        <tr>
-                            <td>${u.id}</td>
-                            <td>${u.name}</td>
-                            <td>${u.shortName}</td>
-                            <td>${u.city}</td>
-                            <td>${u.region}</td>
-                            <td>${u.type}</td>
-                            <td>${u.foundedYear}</td>
-                            <td>${u.totalStudent}</td>
-                            <td>${u.totalFaculties}</td>
-                            <td>
-                                <c:if test="${u.isDraft}">
-                                    <input type="submit" value="Update"/>
-                                </c:if>
-                            </td>
-                        </tr>
+                        <c:if test="${not u.isDraft}">
+                            <tr>
+                                <td>${u.id}</td>
+                                <td>${u.name}</td>
+                                <td>${u.shortName}</td>
+                                <td>${u.city}</td>
+                                <td>${u.region}</td>
+                                <td>${u.type}</td>
+                                <td>${u.foundedYear}</td>
+                                <td>${u.totalStudent}</td>
+                                <td>${u.totalFaculties}</td>
+                                <td>
+                                    <c:if test="${u.isDraft}">
+                                        <input type="submit" value="Update"/>
+                                    </c:if>
+                                </td>
+                            </tr>
+                        </c:if>
                     </c:forEach>
                 </table>
             </c:if>
