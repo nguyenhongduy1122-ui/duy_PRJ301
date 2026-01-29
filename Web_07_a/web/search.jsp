@@ -47,7 +47,7 @@
                     </thead>
 
                     <c:forEach items="${list}" var="u">
-                        <c:if test="${not u.isDraft}">
+                        
                             <tr>
                                 <td>${u.id}</td>
                                 <td>${u.name}</td>
@@ -64,7 +64,7 @@
                                     </c:if>
                                 </td>
                             </tr>
-                        </c:if>
+                        
                     </c:forEach>
                 </table>
             </c:if>
