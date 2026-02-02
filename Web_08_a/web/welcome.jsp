@@ -15,7 +15,7 @@
     </head>
     <body>
         <c:if test="${user != null}">
-            <h1>Welcom, ${user.fullName}</h1>
+            <h1>Welcome, ${user.fullName}</h1>
             <a href="MainController?action=logout&">Logout</a> <br/>
             <a href="search.jsp">Search</a>
         </c:if>
