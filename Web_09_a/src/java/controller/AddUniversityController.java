@@ -59,7 +59,7 @@ public class AddUniversityController extends HttpServlet {
             if (name.isEmpty()) {
                 error += ("Chua nhap name <br/>");
             }
-
+            
             UniversityDAO udao = new UniversityDAO();
             UniversityDTO u = udao.searchByID(id);
             if (u != null) {
