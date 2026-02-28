@@ -33,23 +33,17 @@ public class MainController extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         String action = request.getParameter("action");
         String url = "login.jsp";
-        
-        if(action.equals("login")){
-            url = "LoginController";
-        }else if(action.equals("logout")){
-            url = "LogoutController";
-        }else if(action.equals("search")){
-            url = "SearchController";
-        }else if(action.equals("deleteUniversity")){
-            url = "DeleteUniversityController";
-        }else if(action.equals("addUniversity")){
-            url = "AddUniversityController";
-        }else if(action.equals("updateUniversity") ||action.equals("saveUpdateUniversity")  ){
-            url = "UpdateUniversityController";
+
+        if (action == null) {
+            url = "login.jsp";
+        } else if (action.equals("login") || action.equals("logout")) {
+            url = "UserController";
+        } else if (action.contains("University")) {
+            // Tất cả action có chữ "University" như: addUniversity, deleteUniversity...
+            url = "UniversityController";
         }
-        RequestDispatcher rd = request.getRequestDispatcher(url);
-        rd.forward(request, response);
-        
+        request.getRequestDispatcher(url).forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

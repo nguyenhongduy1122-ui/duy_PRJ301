@@ -22,5 +22,5 @@
         <c:if test="empty user">
             <c:redirect url="login.jsp"/>
         </c:if>    
-        </body>
-    </html>
+    </body>
+</html>

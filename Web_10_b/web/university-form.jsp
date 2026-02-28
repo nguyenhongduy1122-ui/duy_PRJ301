@@ -25,7 +25,7 @@
             City: <input type="text" name="city" value="${u.city}"/> <br/>
             Region: <input type="text" name="region" value="${u.region}"/> <br/>
             Type: <input type="text" name="type" value="${u.type}"/> <br/>
-            TotalStudent: <input type="number" step="1" min="0" name="totalStudent" value="${u.totalStudent}"/> <br/>
+            TotalStudents: <input type="number" step="1" min="0" name="totalStudents" value="${u.totalStudents}"/> <br/>
             TotalFaculties: <input type="number" step="1" min="0" name="totalFaculties" value="${u.totalFaculties}"/> <br/>
             IsDraft: <input type="checkbox" ${u.isDraft ? 'checked' : ''} name="isDraft"/> <br/>
             <c:choose>

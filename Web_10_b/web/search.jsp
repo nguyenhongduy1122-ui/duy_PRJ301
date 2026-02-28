@@ -56,7 +56,7 @@
                             <td>${u.region}</td>
                             <td>${u.type}</td>
                             <td>${u.foundedYear}</td>
-                            <td>${u.totalStudent}</td>
+                            <td>${u.totalStudents}</td>
                             <td>${u.totalFaculties}</td>
                             <td>
                                 <c:if test="${u.isDraft}">

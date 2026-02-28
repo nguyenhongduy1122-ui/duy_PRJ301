@@ -6,20 +6,17 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.UniversityDAO;
-import model.UniversityDTO;
 
 /**
  *
  * @author Duy
  */
-public class DeleteUniversityController extends HttpServlet {
+public class MainController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,40 +29,21 @@ public class DeleteUniversityController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
-        
-        String keywords = request.getParameter("keywords");
-        String id = request.getParameter("id");
-        if(keywords == null){
-            keywords = "";
+        String action = request.getParameter("action");
+        String url = "login.jsp";
+
+        if (action == null) {
+            url = "login.jsp";
+        } else if (action.equals("login") || action.equals("logout")) {
+            url = "UserController";
+        } else if (action.contains("University")) {
+            // Tất cả action có chữ "University" như: addUniversity, deleteUniversity...
+            url = "UniversityController";
         }
-        if(id == null){
-            id = "";
-        }
-        UniversityDAO udao = new UniversityDAO();
-        
-        //Xoa
-        if(!id.isEmpty()){
-            boolean check = udao.softDelete(id);
-            if(check)
-                request.setAttribute("msg", "Deleted!");
-            else
-                request.setAttribute("msg", "Error, can not delete: " + id);
-        }
-        
-        //Tim kiem
-        ArrayList<UniversityDTO> list = new ArrayList<>();
-        if(keywords.trim().length() > 0){
-            list = udao.filterByName(keywords);
-        }
-        request.setAttribute("list", list);
-        request.setAttribute("keywords", keywords);
-        String url = "search.jsp";
-        
-        RequestDispatcher rd = request.getRequestDispatcher(url);
-        rd.forward(request, response);
+        request.getRequestDispatcher(url).forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
